@@ -1,0 +1,112 @@
+version 3
+run General-0-20260307-20:06:52-6758
+attr configname General
+attr datetime 20260307-20:06:52
+attr datetimef 20260307-200652
+attr experiment General
+attr inifile simulations/omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network src.RingNetwork
+attr processid 6758
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network src.RingNetwork
+config **.delay 20ms
+config **.datarate 2Mbps
+config *.node[9].crashTime 10s
+config *.node[8].crashTime 10s
+config **.electionTimeout 1.5s
+config **.stopDelay 2s
+config cmdenv-express-mode false
+config **.allowunconnected true
+config **.cmdenv-log-level debug
+
+par RingNetwork.node[0].outGate[0].channel typename "\"src.LossyChannel\""
+par RingNetwork.node[0].outGate[0].channel disabled false
+attr mutable ""
+par RingNetwork.node[0].outGate[0].channel delay 0.0132322s
+attr mutable ""
+attr unit s
+par RingNetwork.node[0].outGate[0].channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par RingNetwork.node[0].outGate[0].channel ber 0
+attr mutable ""
+par RingNetwork.node[0].outGate[0].channel per 0
+attr mutable ""
+par RingNetwork.node[0].outGate[0].channel lossRate 0.2
+par RingNetwork.node[1].outGate[0].channel typename "\"src.LossyChannel\""
+par RingNetwork.node[1].outGate[0].channel disabled false
+attr mutable ""
+par RingNetwork.node[1].outGate[0].channel delay 0.0138927s
+attr mutable ""
+attr unit s
+par RingNetwork.node[1].outGate[0].channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par RingNetwork.node[1].outGate[0].channel ber 0
+attr mutable ""
+par RingNetwork.node[1].outGate[0].channel per 0
+attr mutable ""
+par RingNetwork.node[1].outGate[0].channel lossRate 0.2
+par RingNetwork.node[2].outGate[0].channel typename "\"src.LossyChannel\""
+par RingNetwork.node[2].outGate[0].channel disabled false
+attr mutable ""
+par RingNetwork.node[2].outGate[0].channel delay 0.0157278s
+attr mutable ""
+attr unit s
+par RingNetwork.node[2].outGate[0].channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par RingNetwork.node[2].outGate[0].channel ber 0
+attr mutable ""
+par RingNetwork.node[2].outGate[0].channel per 0
+attr mutable ""
+par RingNetwork.node[2].outGate[0].channel lossRate 0.2
+par RingNetwork.node[3].outGate[0].channel typename "\"src.LossyChannel\""
+par RingNetwork.node[3].outGate[0].channel disabled false
+attr mutable ""
+par RingNetwork.node[3].outGate[0].channel delay 0.017664s
+attr mutable ""
+attr unit s
+par RingNetwork.node[3].outGate[0].channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par RingNetwork.node[3].outGate[0].channel ber 0
+attr mutable ""
+par RingNetwork.node[3].outGate[0].channel per 0
+attr mutable ""
+par RingNetwork.node[3].outGate[0].channel lossRate 0.2
+par RingNetwork.node[4].outGate[0].channel typename "\"src.LossyChannel\""
+par RingNetwork.node[4].outGate[0].channel disabled false
+attr mutable ""
+par RingNetwork.node[4].outGate[0].channel delay 0.0140415s
+attr mutable ""
+attr unit s
+par RingNetwork.node[4].outGate[0].channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par RingNetwork.node[4].outGate[0].channel ber 0
+attr mutable ""
+par RingNetwork.node[4].outGate[0].channel per 0
+attr mutable ""
+par RingNetwork.node[4].outGate[0].channel lossRate 0.2
+par RingNetwork.node[0] typename "\"src.RingNode\""
+par RingNetwork.node[0] nodeId 0
+par RingNetwork.node[1] typename "\"src.RingNode\""
+par RingNetwork.node[1] nodeId 1
+par RingNetwork.node[2] typename "\"src.RingNode\""
+par RingNetwork.node[2] nodeId 2
+par RingNetwork.node[3] typename "\"src.RingNode\""
+par RingNetwork.node[3] nodeId 3
+par RingNetwork.node[4] typename "\"src.RingNode\""
+par RingNetwork.node[4] nodeId 4
+par RingNetwork typename "\"src.RingNetwork\""
+par RingNetwork numNodes 5
+
