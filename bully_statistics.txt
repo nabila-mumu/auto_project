@@ -1,0 +1,3 @@
+Leader: 5
+Election Time: 0.199518809107
+Messages Sent: 22

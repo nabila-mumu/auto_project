@@ -21,6 +21,11 @@ channel LossyChannel extends ned.DatarateChannel
         datarate = 1Mbps;
 }
 
+channel DelayChannel extends ned.DelayChannel
+{
+    delay = uniform(10ms, 100ms);
+}
+
 network BullyNetwork
 {
     parameters:
