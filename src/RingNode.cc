@@ -215,7 +215,7 @@ void RingNode::finish()
     if (isLeader) {
         std::ofstream csvFile("/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv", std::ios::app);
         if (csvFile.is_open()) {
-            csvFile << electionTime << "," << totalMessages;
+            csvFile << electionTime << "," << totalMessages<<'\n';
             csvFile.close();
         } else {
             EV << "Error: Unable to open topology_analysis.csv for writing." << endl;

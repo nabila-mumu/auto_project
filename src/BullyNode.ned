@@ -13,19 +13,6 @@ simple BullyNode
         output outGate[];
 }
 
-channel LossyChannel extends ned.DatarateChannel
-{
-    parameters:
-        double lossRate = default(0.2);   // 20% message loss
-        delay = uniform(5ms, 20ms);
-        datarate = 1Mbps;
-}
-
-channel DelayChannel extends ned.DelayChannel
-{
-    delay = uniform(10ms, 100ms);
-}
-
 network BullyNetwork
 {
     parameters:
@@ -38,23 +25,49 @@ network BullyNetwork
 
     connections allowunconnected:
 
-    // Original ring
-    node[0].outGate++ --> LossyChannel --> node[1].inGate++;
-    node[1].outGate++ --> LossyChannel --> node[0].inGate++;
+    node[2].outGate++ --> LossyChannel --> node[4].inGate++;
+    node[4].outGate++ --> LossyChannel --> node[2].inGate++;
 
-    node[1].outGate++ --> LossyChannel --> node[2].inGate++;
-    node[2].outGate++ --> LossyChannel --> node[1].inGate++;
+    node[1].outGate++ --> LossyChannel --> node[5].inGate++;
+    node[5].outGate++ --> LossyChannel --> node[1].inGate++;
 
-    node[2].outGate++ --> LossyChannel --> node[3].inGate++;
-    node[3].outGate++ --> LossyChannel --> node[2].inGate++;
+    node[6].outGate++ --> LossyChannel --> node[8].inGate++;
+    node[8].outGate++ --> LossyChannel --> node[6].inGate++;
 
-    node[3].outGate++ --> LossyChannel --> node[4].inGate++;
-    node[4].outGate++ --> LossyChannel --> node[3].inGate++;
+    node[1].outGate++ --> LossyChannel --> node[8].inGate++;
+    node[8].outGate++ --> LossyChannel --> node[1].inGate++;
 
-    node[4].outGate++ --> LossyChannel --> node[5].inGate++;
-    node[5].outGate++ --> LossyChannel --> node[4].inGate++;
+    node[5].outGate++ --> LossyChannel --> node[7].inGate++;
+    node[7].outGate++ --> LossyChannel --> node[5].inGate++;
 
-    node[5].outGate++ --> LossyChannel --> node[0].inGate++;
-    node[0].outGate++ --> LossyChannel --> node[5].inGate++;
+    node[0].outGate++ --> LossyChannel --> node[6].inGate++;
+    node[6].outGate++ --> LossyChannel --> node[0].inGate++;
+
+    node[7].outGate++ --> LossyChannel --> node[9].inGate++;
+    node[9].outGate++ --> LossyChannel --> node[7].inGate++;
+
+    node[1].outGate++ --> LossyChannel --> node[7].inGate++;
+    node[7].outGate++ --> LossyChannel --> node[1].inGate++;
+
+    node[3].outGate++ --> LossyChannel --> node[5].inGate++;
+    node[5].outGate++ --> LossyChannel --> node[3].inGate++;
+
+    node[3].outGate++ --> LossyChannel --> node[9].inGate++;
+    node[9].outGate++ --> LossyChannel --> node[3].inGate++;
+
+    node[4].outGate++ --> LossyChannel --> node[8].inGate++;
+    node[8].outGate++ --> LossyChannel --> node[4].inGate++;
+
+    node[1].outGate++ --> LossyChannel --> node[6].inGate++;
+    node[6].outGate++ --> LossyChannel --> node[1].inGate++;
+
+    node[0].outGate++ --> LossyChannel --> node[8].inGate++;
+    node[8].outGate++ --> LossyChannel --> node[0].inGate++;
+
+    node[4].outGate++ --> LossyChannel --> node[7].inGate++;
+    node[7].outGate++ --> LossyChannel --> node[4].inGate++;
+
+    node[7].outGate++ --> LossyChannel --> node[8].inGate++;
+    node[8].outGate++ --> LossyChannel --> node[7].inGate++;
 
 }

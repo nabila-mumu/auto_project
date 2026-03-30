@@ -1,280 +1,106 @@
 version 3
-run General-0-20260328-10:05:23-11549
+run General-0-20260330-06:14:52-25233
 attr configname General
-attr datetime 20260328-10:05:23
-attr datetimef 20260328-100523
+attr datetime 20260330-06:14:52
+attr datetimef 20260330-061452
 attr experiment General
 attr inifile simulations/omnetpp.ini
 attr iterationvars ""
 attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
-attr network src.BullyNetwork
-attr processid 11549
+attr network src.RaftNetwork
+attr processid 25233
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
-config network src.BullyNetwork
-config **.delay 20ms
-config **.datarate 2Mbps
-config *.node[9].crashTime 10s
-config *.node[8].crashTime 10s
-config **.electionTimeout 3s
-config **.stopDelay 2s
+config network src.RaftNetwork
 config cmdenv-express-mode false
 config **.allowunconnected true
 config **.cmdenv-log-level debug
 
-par BullyNetwork.node[0].outGate[0].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[0].outGate[0].channel disabled false
+par RaftNetwork.node[0].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[0].channel disabled false
 attr mutable ""
-par BullyNetwork.node[0].outGate[0].channel delay 0.0132322s
+par RaftNetwork.node[0].outGate[0].channel delay 0.0132322s
 attr mutable ""
 attr unit s
-par BullyNetwork.node[0].outGate[0].channel datarate 1e+06bps
+par RaftNetwork.node[0].outGate[0].channel datarate 1e+06bps
 attr mutable ""
 attr unit bps
-par BullyNetwork.node[0].outGate[0].channel ber 0
+par RaftNetwork.node[0].outGate[0].channel ber 0
 attr mutable ""
-par BullyNetwork.node[0].outGate[0].channel per 0
+par RaftNetwork.node[0].outGate[0].channel per 0
 attr mutable ""
-par BullyNetwork.node[0].outGate[0].channel lossRate 0.2
-par BullyNetwork.node[1].outGate[0].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[1].outGate[0].channel disabled false
+par RaftNetwork.node[0].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[0].channel disabled false
 attr mutable ""
-par BullyNetwork.node[1].outGate[0].channel delay 0.0138927s
+par RaftNetwork.node[1].outGate[0].channel delay 0.0138927s
 attr mutable ""
 attr unit s
-par BullyNetwork.node[1].outGate[0].channel datarate 1e+06bps
+par RaftNetwork.node[1].outGate[0].channel datarate 1e+06bps
 attr mutable ""
 attr unit bps
-par BullyNetwork.node[1].outGate[0].channel ber 0
+par RaftNetwork.node[1].outGate[0].channel ber 0
 attr mutable ""
-par BullyNetwork.node[1].outGate[0].channel per 0
+par RaftNetwork.node[1].outGate[0].channel per 0
 attr mutable ""
-par BullyNetwork.node[1].outGate[0].channel lossRate 0.2
-par BullyNetwork.node[1].outGate[1].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[1].outGate[1].channel disabled false
+par RaftNetwork.node[1].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[0].channel disabled false
 attr mutable ""
-par BullyNetwork.node[1].outGate[1].channel delay 0.0157278s
+par RaftNetwork.node[2].outGate[0].channel delay 0.0157278s
 attr mutable ""
 attr unit s
-par BullyNetwork.node[1].outGate[1].channel datarate 1e+06bps
+par RaftNetwork.node[2].outGate[0].channel datarate 1e+06bps
 attr mutable ""
 attr unit bps
-par BullyNetwork.node[1].outGate[1].channel ber 0
+par RaftNetwork.node[2].outGate[0].channel ber 0
 attr mutable ""
-par BullyNetwork.node[1].outGate[1].channel per 0
+par RaftNetwork.node[2].outGate[0].channel per 0
 attr mutable ""
-par BullyNetwork.node[1].outGate[1].channel lossRate 0.2
-par BullyNetwork.node[2].outGate[0].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[2].outGate[0].channel disabled false
+par RaftNetwork.node[2].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[0].channel disabled false
 attr mutable ""
-par BullyNetwork.node[2].outGate[0].channel delay 0.017664s
+par RaftNetwork.node[3].outGate[0].channel delay 0.017664s
 attr mutable ""
 attr unit s
-par BullyNetwork.node[2].outGate[0].channel datarate 1e+06bps
+par RaftNetwork.node[3].outGate[0].channel datarate 1e+06bps
 attr mutable ""
 attr unit bps
-par BullyNetwork.node[2].outGate[0].channel ber 0
+par RaftNetwork.node[3].outGate[0].channel ber 0
 attr mutable ""
-par BullyNetwork.node[2].outGate[0].channel per 0
+par RaftNetwork.node[3].outGate[0].channel per 0
 attr mutable ""
-par BullyNetwork.node[2].outGate[0].channel lossRate 0.2
-par BullyNetwork.node[2].outGate[1].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[2].outGate[1].channel disabled false
+par RaftNetwork.node[3].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[0].channel disabled false
 attr mutable ""
-par BullyNetwork.node[2].outGate[1].channel delay 0.0140415s
+par RaftNetwork.node[4].outGate[0].channel delay 0.0140415s
 attr mutable ""
 attr unit s
-par BullyNetwork.node[2].outGate[1].channel datarate 1e+06bps
+par RaftNetwork.node[4].outGate[0].channel datarate 1e+06bps
 attr mutable ""
 attr unit bps
-par BullyNetwork.node[2].outGate[1].channel ber 0
+par RaftNetwork.node[4].outGate[0].channel ber 0
 attr mutable ""
-par BullyNetwork.node[2].outGate[1].channel per 0
+par RaftNetwork.node[4].outGate[0].channel per 0
 attr mutable ""
-par BullyNetwork.node[2].outGate[1].channel lossRate 0.2
-par BullyNetwork.node[3].outGate[0].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[3].outGate[0].channel disabled false
-attr mutable ""
-par BullyNetwork.node[3].outGate[0].channel delay 0.0178692s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[3].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[3].outGate[0].channel ber 0
-attr mutable ""
-par BullyNetwork.node[3].outGate[0].channel per 0
-attr mutable ""
-par BullyNetwork.node[3].outGate[0].channel lossRate 0.2
-par BullyNetwork.node[3].outGate[1].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[3].outGate[1].channel disabled false
-attr mutable ""
-par BullyNetwork.node[3].outGate[1].channel delay 0.0131732s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[3].outGate[1].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[3].outGate[1].channel ber 0
-attr mutable ""
-par BullyNetwork.node[3].outGate[1].channel per 0
-attr mutable ""
-par BullyNetwork.node[3].outGate[1].channel lossRate 0.2
-par BullyNetwork.node[4].outGate[0].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[4].outGate[0].channel disabled false
-attr mutable ""
-par BullyNetwork.node[4].outGate[0].channel delay 0.0177088s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[4].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[4].outGate[0].channel ber 0
-attr mutable ""
-par BullyNetwork.node[4].outGate[0].channel per 0
-attr mutable ""
-par BullyNetwork.node[4].outGate[0].channel lossRate 0.2
-par BullyNetwork.node[4].outGate[1].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[4].outGate[1].channel disabled false
-attr mutable ""
-par BullyNetwork.node[4].outGate[1].channel delay 0.0113548s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[4].outGate[1].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[4].outGate[1].channel ber 0
-attr mutable ""
-par BullyNetwork.node[4].outGate[1].channel per 0
-attr mutable ""
-par BullyNetwork.node[4].outGate[1].channel lossRate 0.2
-par BullyNetwork.node[5].outGate[0].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[5].outGate[0].channel disabled false
-attr mutable ""
-par BullyNetwork.node[5].outGate[0].channel delay 0.0143535s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[5].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[5].outGate[0].channel ber 0
-attr mutable ""
-par BullyNetwork.node[5].outGate[0].channel per 0
-attr mutable ""
-par BullyNetwork.node[5].outGate[0].channel lossRate 0.2
-par BullyNetwork.node[5].outGate[1].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[5].outGate[1].channel disabled false
-attr mutable ""
-par BullyNetwork.node[5].outGate[1].channel delay 0.0146884s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[5].outGate[1].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[5].outGate[1].channel ber 0
-attr mutable ""
-par BullyNetwork.node[5].outGate[1].channel per 0
-attr mutable ""
-par BullyNetwork.node[5].outGate[1].channel lossRate 0.2
-par BullyNetwork.node[0].outGate[1].channel typename "\"src.LossyChannel\""
-par BullyNetwork.node[0].outGate[1].channel disabled false
-attr mutable ""
-par BullyNetwork.node[0].outGate[1].channel delay 0.0107657s
-attr mutable ""
-attr unit s
-par BullyNetwork.node[0].outGate[1].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par BullyNetwork.node[0].outGate[1].channel ber 0
-attr mutable ""
-par BullyNetwork.node[0].outGate[1].channel per 0
-attr mutable ""
-par BullyNetwork.node[0].outGate[1].channel lossRate 0.2
-par BullyNetwork.node[0] typename "\"src.BullyNode\""
-par BullyNetwork.node[0] nodeId 0
-par BullyNetwork.node[0] crashTime -1s
-attr unit s
-par BullyNetwork.node[0] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[0] stopDelay 2s
-attr unit s
-par BullyNetwork.node[1] typename "\"src.BullyNode\""
-par BullyNetwork.node[1] nodeId 1
-par BullyNetwork.node[1] crashTime -1s
-attr unit s
-par BullyNetwork.node[1] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[1] stopDelay 2s
-attr unit s
-par BullyNetwork.node[2] typename "\"src.BullyNode\""
-par BullyNetwork.node[2] nodeId 2
-par BullyNetwork.node[2] crashTime -1s
-attr unit s
-par BullyNetwork.node[2] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[2] stopDelay 2s
-attr unit s
-par BullyNetwork.node[3] typename "\"src.BullyNode\""
-par BullyNetwork.node[3] nodeId 3
-par BullyNetwork.node[3] crashTime -1s
-attr unit s
-par BullyNetwork.node[3] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[3] stopDelay 2s
-attr unit s
-par BullyNetwork.node[4] typename "\"src.BullyNode\""
-par BullyNetwork.node[4] nodeId 4
-par BullyNetwork.node[4] crashTime -1s
-attr unit s
-par BullyNetwork.node[4] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[4] stopDelay 2s
-attr unit s
-par BullyNetwork.node[5] typename "\"src.BullyNode\""
-par BullyNetwork.node[5] nodeId 5
-par BullyNetwork.node[5] crashTime -1s
-attr unit s
-par BullyNetwork.node[5] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[5] stopDelay 2s
-attr unit s
-par BullyNetwork.node[6] typename "\"src.BullyNode\""
-par BullyNetwork.node[6] nodeId 6
-par BullyNetwork.node[6] crashTime -1s
-attr unit s
-par BullyNetwork.node[6] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[6] stopDelay 2s
-attr unit s
-par BullyNetwork.node[7] typename "\"src.BullyNode\""
-par BullyNetwork.node[7] nodeId 7
-par BullyNetwork.node[7] crashTime -1s
-attr unit s
-par BullyNetwork.node[7] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[7] stopDelay 2s
-attr unit s
-par BullyNetwork.node[8] typename "\"src.BullyNode\""
-par BullyNetwork.node[8] nodeId 8
-par BullyNetwork.node[8] crashTime 10s
-attr unit s
-par BullyNetwork.node[8] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[8] stopDelay 2s
-attr unit s
-par BullyNetwork.node[9] typename "\"src.BullyNode\""
-par BullyNetwork.node[9] nodeId 9
-par BullyNetwork.node[9] crashTime 10s
-attr unit s
-par BullyNetwork.node[9] electionTimeout 3s
-attr unit s
-par BullyNetwork.node[9] stopDelay 2s
-attr unit s
-par BullyNetwork typename "\"src.BullyNetwork\""
-par BullyNetwork numNodes 10
+par RaftNetwork.node[4].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[0] typename "\"src.RaftNode\""
+par RaftNetwork.node[0] nodeId 0
+par RaftNetwork.node[1] typename "\"src.RaftNode\""
+par RaftNetwork.node[1] nodeId 1
+par RaftNetwork.node[2] typename "\"src.RaftNode\""
+par RaftNetwork.node[2] nodeId 2
+par RaftNetwork.node[3] typename "\"src.RaftNode\""
+par RaftNetwork.node[3] nodeId 3
+par RaftNetwork.node[4] typename "\"src.RaftNode\""
+par RaftNetwork.node[4] nodeId 4
+par RaftNetwork typename "\"src.RaftNetwork\""
+par RaftNetwork numNodes 5
 

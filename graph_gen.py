@@ -72,8 +72,25 @@ def generate_ring_ned(n):
 
     lines.append("}\n")
 
-    with open("RingNode.ned", "w") as f:
+    with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/src/RingNode.ned", "w") as f:
         f.writelines(lines)
+
+# ===============================
+# Generate Channels.ned
+# ===============================
+def generate_channels_ned():
+    lines = []
+    lines.append("package src;\n\n")
+    lines.append("channel LossyChannel extends ned.DatarateChannel\n{\n")
+    lines.append("    parameters:\n")
+    lines.append("        double lossRate = default(0.2);\n")
+    lines.append("        delay = uniform(5ms, 20ms);\n")
+    lines.append("        datarate = 1Mbps;\n")
+    lines.append("}\n")
+
+    with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/src/Channels.ned", "w") as f:
+        f.writelines(lines)
+
 
 # ===============================
 # Generate BullyNode.ned
@@ -94,13 +111,6 @@ def generate_bully_ned(n, edges):
     lines.append("        output outGate[];\n")
     lines.append("}\n\n")
 
-    lines.append("channel LossyChannel extends ned.DatarateChannel\n{\n")
-    lines.append("    parameters:\n")
-    lines.append("        double lossRate = default(0.2);\n")
-    lines.append("        delay = uniform(5ms, 20ms);\n")
-    lines.append("        datarate = 1Mbps;\n")
-    lines.append("}\n\n")
-
     lines.append("network BullyNetwork\n{\n")
     lines.append(f"    parameters:\n        int numNodes = default({n});\n")
 
@@ -119,8 +129,10 @@ def generate_bully_ned(n, edges):
 
     lines.append("}\n")
 
-    with open("BullyNode.ned", "w") as f:
+    with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/src/BullyNode.ned", "w") as f:
         f.writelines(lines)
+
+    
 
 # ===============================
 # Generate omnetpp.ini
@@ -128,14 +140,20 @@ def generate_bully_ned(n, edges):
 def generate_ini(n, failure_rate):
     lines = []
     lines.append("[General]\n")
-    lines.append("network = BullyNetwork\n")
-    lines.append("sim-time-limit = 100s\n\n")
+    lines.append("network = src.BullyNetwork\n")
+    lines.append("# sim-time-limit = 1000s\n\n")
 
     lines.append("# Node failure configuration\n")
     for i in range(n):
-        lines.append(f"*.node[{i}].crashTime = exponential({1/failure_rate})s\n")
+        mean_time = 1 / failure_rate
+        lines.append(f"*.node[{i}].crashTime = exponential({mean_time}s)\n")
 
-    with open("omnetpp.ini", "w") as f:
+    lines.append("# Optional (for terminal mode)\n")
+    lines.append("cmdenv-express-mode = false\n")
+    lines.append("**.allowunconnected = true\n\n")
+    lines.append("# cmdenv-log-level = info\n")
+    lines.append("**.cmdenv-log-level = debug\n")
+    with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/omnetpp.ini", "w") as f:
         f.writelines(lines)
 
 # ===============================
