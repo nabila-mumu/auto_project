@@ -1,7 +1,7 @@
 {
-    "num_nodes": 10,
-    "num_edges": 15,
-    "bandwidth": 100,
-    "latency": 10,
-    "failure_rate": 0.4
+  "num_nodes": 15,
+  "num_edges": 104,
+  "bandwidth": 100,
+  "latency": 80,
+  "failure_rate": 0.8
 }

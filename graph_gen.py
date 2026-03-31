@@ -42,11 +42,14 @@ def write_graph_txt(edges, bandwidth, latency, filename="graph.txt"):
             f.write(f"{u} {v} {bandwidth} {latency}\n")
 
 # ===============================
-# Generate RingNode.ned
+# Generate RingNode.ned (from graph, UNIDIRECTIONAL)
 # ===============================
-def generate_ring_ned(n):
+# def generate_ring_ned(n):
+def generate_ring_ned(n, edges):
     lines = []
-    lines.append("package src;\n")
+    lines.append("package src;\n\n")
+
+    # Simple module
     lines.append("simple RingNode\n{\n")
     lines.append("    parameters:\n")
     lines.append("        int nodeId;\n")
@@ -56,6 +59,7 @@ def generate_ring_ned(n):
     lines.append("        output outGate[];\n")
     lines.append("}\n\n")
 
+    # Network
     lines.append("network RingNetwork\n{\n")
     lines.append(f"    parameters:\n        int numNodes = default({n});\n\n")
     lines.append("    submodules:\n")
@@ -64,11 +68,15 @@ def generate_ring_ned(n):
     lines.append("                nodeId = index;\n")
     lines.append("        }\n\n")
 
-    lines.append("    connections allowunconnected:\n")
+    lines.append("    connections allowunconnected:\n\n")
 
-    for i in range(n):
-        j = (i + 1) % n
-        lines.append(f"    node[{i}].outGate++ --> LossyChannel --> node[{j}].inGate++;\n")
+    # UNIDIRECTIONAL edges (only u → v)
+    for u, v in edges:
+        lines.append(f"    node[{u}].outGate++ --> LossyChannel --> node[{v}].inGate++;\n")
+
+    # for i in range(n):
+    #     j = (i + 1) % n
+    #     lines.append(f"    node[{i}].outGate++ --> LossyChannel --> node[{j}].inGate++;\n")
 
     lines.append("}\n")
 
@@ -78,14 +86,19 @@ def generate_ring_ned(n):
 # ===============================
 # Generate Channels.ned
 # ===============================
-def generate_channels_ned():
+def generate_channels_ned(bandwidth, latency):
     lines = []
     lines.append("package src;\n\n")
     lines.append("channel LossyChannel extends ned.DatarateChannel\n{\n")
     lines.append("    parameters:\n")
     lines.append("        double lossRate = default(0.2);\n")
-    lines.append("        delay = uniform(5ms, 20ms);\n")
-    lines.append("        datarate = 1Mbps;\n")
+    # ✅ latency in ms
+    lines.append(f"        delay = {latency}ms;\n")
+
+    # ✅ bandwidth in Mbps
+    lines.append(f"        datarate = {bandwidth}Mbps;\n")
+    # lines.append("        delay = uniform(5ms, 20ms);\n")
+    # lines.append("        datarate = 1Mbps;\n")
     lines.append("}\n")
 
     with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/src/Channels.ned", "w") as f:
@@ -132,7 +145,44 @@ def generate_bully_ned(n, edges):
     with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/src/BullyNode.ned", "w") as f:
         f.writelines(lines)
 
-    
+# ===============================
+# Generate RaftNode.ned
+# ===============================
+def generate_raft_ned(n, edges):
+    lines = []
+    lines.append("package src;\n\n")
+
+    # Simple module
+    lines.append("simple RaftNode\n{\n")
+    lines.append("    parameters:\n")
+    lines.append("        int nodeId;\n")
+    lines.append('        @display("i=block/routing");\n')
+    lines.append("    gates:\n")
+    lines.append("        input inGate[];\n")
+    lines.append("        output outGate[];\n")
+    lines.append("}\n\n")
+
+    # Network
+    lines.append("network RaftNetwork\n{\n")
+    lines.append(f"    parameters:\n        int numNodes = default({n});\n\n")
+
+    lines.append("    submodules:\n")
+    lines.append("        node[numNodes]: RaftNode {\n")
+    lines.append("            parameters:\n")
+    lines.append("                nodeId = index;\n")
+    lines.append("        }\n\n")
+
+    lines.append("    connections allowunconnected:\n\n")
+
+    # Bidirectional edges (same as bully)
+    for u, v in edges:
+        lines.append(f"    node[{u}].outGate++ --> LossyChannel --> node[{v}].inGate++;\n")
+        lines.append(f"    node[{v}].outGate++ --> LossyChannel --> node[{u}].inGate++;\n\n")
+
+    lines.append("}\n")
+
+    with open("/home/nabila/omnetpp-6.3.0/samples/auto_project/src/RaftNode.ned", "w") as f:
+        f.writelines(lines)
 
 # ===============================
 # Generate omnetpp.ini
@@ -171,14 +221,17 @@ def main():
     edges = generate_connected_graph(n, m)
 
     write_graph_txt(edges, bandwidth, latency)
-    generate_ring_ned(n)
+    generate_ring_ned(n, edges)
     generate_bully_ned(n, edges)
+    generate_raft_ned(n, edges)
+    generate_channels_ned(bandwidth, latency) 
     generate_ini(n, failure_rate)
 
     print("✅ Files generated:")
     print("- graph.txt")
     print("- RingNode.ned")
     print("- BullyNode.ned")
+    print("- RaftNode.ned")
     print("- omnetpp.ini")
 
 if __name__ == "__main__":

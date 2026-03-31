@@ -74,7 +74,7 @@ echo "Step 4: Append to CSV"
 echo "====================================="
 
 # echo "$num_nodes,$num_edges,$graph_density,$avg_degree,$num_components,$failure_rate,$bandwidth,$latency," >> $CSV_FILE
-printf "%s,%s,%s,%s,%s,%s,%s,%s," \
+printf "\n%s,%s,%s,%s,%s,%s,%s,%s," \
 "$num_nodes" "$num_edges" "$graph_density" "$avg_degree" \
 "$num_components" "$failure_rate" "$bandwidth" "$latency" >> "$CSV_FILE"
 
@@ -91,24 +91,118 @@ if [ ! -f "./auto_project" ]; then
     exit 1
 fi
 
-echo "====================================="
-echo "Step 6: Run BullyNetwork"
-echo "====================================="
+#----------------------------------------------------------
 
-sed -i 's/^network[[:space:]]*=.*/network = src.BullyNetwork/' simulations/omnetpp.ini
-./auto_project -u Cmdenv -n . -f simulations/omnetpp.ini
+INI_FILE="simulations/omnetpp.ini"
+EXEC="./auto_project"
+CSV_FILE="/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv"
 
-echo "====================================="
-echo "Step 7: Switch to RingNetwork"
-echo "====================================="
+MAX_RETRY=3
+TIME_LIMIT=5s
 
-sed -i 's/^network[[:space:]]*=.*/network = src.RingNetwork/' simulations/omnetpp.ini
+run_with_retry() {
+    local network_name=$1
+    local fail_commas=$2   # what to write if all retries fail
 
-echo "====================================="
-echo "Step 8: Run RingNetwork"
-echo "====================================="
+    echo "====================================="
+    echo "Running $network_name"
+    echo "====================================="
 
-./auto_project -u Cmdenv -n . -f simulations/omnetpp.ini
+    # switch network
+    sed -i "s/^network[[:space:]]*=.*/network = src.${network_name}/" $INI_FILE
+
+    attempt=1
+    success=0
+
+    while [ $attempt -le $MAX_RETRY ]; do
+        echo "Attempt $attempt for $network_name..."
+
+        set +e
+        timeout --kill-after=10s $TIME_LIMIT $EXEC -u Cmdenv -n . -f $INI_FILE
+        # timeout --signal=KILL 5s $TIME_LIMIT $EXEC -u Cmdenv -n . -f $INI_FILE
+        exit_code=$?
+        set -e
+
+        # timeout $TIME_LIMIT $EXEC -u Cmdenv -n . -f $INI_FILE
+        # exit_code=$?
+
+        if [ $exit_code -eq 0 ]; then
+            echo "✅ $network_name succeeded on attempt $attempt"
+            success=1
+            break
+        else
+            echo "❌ $network_name failed (timeout or crash)"
+        fi
+
+        ((attempt++))
+    done
+
+    # If failed all attempts → write commas
+    # if [ $success -eq 0 ]; then
+    #     echo "⚠️ $network_name failed after $MAX_RETRY attempts"
+
+    #     echo -n "$fail_commas" >> $CSV_FILE
+    # fi
+    if [ $success -eq 0 ]; then
+        echo "⚠️ $network_name failed after $MAX_RETRY attempts"
+
+        # Ensure directory exists
+        mkdir -p "$(dirname "$CSV_FILE")"
+
+        # Safe write (disable set -e temporarily)
+        set +e
+        printf "%s" "$fail_commas" >> "$CSV_FILE"
+        write_status=$?
+        set -e
+
+        if [ $write_status -ne 0 ]; then
+            echo "❌ ERROR: Failed to write to CSV!"
+        else
+            echo "📝 Wrote failure commas: $fail_commas"
+        fi
+    fi
+}
+
+# STEP 6: BullyNetwork
+run_with_retry "BullyNetwork" ",,"
+
+# STEP 7: RingNetwork
+run_with_retry "RingNetwork" ",,"
+
+# STEP 8: Bidirectional RingNetwork
+./make_bidir.sh
+run_with_retry "RingNetwork" ",,"
+
+# STEP 9: RaftNetwork
+run_with_retry "RaftNetwork" ","
+
+# echo "====================================="
+# echo "Step 6: Switch to and Run BullyNetwork"
+# echo "====================================="
+
+# sed -i 's/^network[[:space:]]*=.*/network = src.BullyNetwork/' simulations/omnetpp.ini
+# ./auto_project -u Cmdenv -n . -f simulations/omnetpp.ini
+
+# echo "====================================="
+# echo "Step 7: Switch to and Run RingNetwork"
+# echo "====================================="
+
+# sed -i 's/^network[[:space:]]*=.*/network = src.RingNetwork/' simulations/omnetpp.ini
+# ./auto_project -u Cmdenv -n . -f simulations/omnetpp.ini
+
+# echo "====================================="
+# echo "Step 8: Switch to and Run Bidirectional RingNetwork"
+# echo "====================================="
+
+# ./make_bidir.sh
+# ./auto_project -u Cmdenv -n . -f simulations/omnetpp.ini
+
+# echo "====================================="
+# echo "Step 9: Switch to and Run RaftNetwork"
+# echo "====================================="
+
+# sed -i 's/^network[[:space:]]*=.*/network = src.RaftNetwork/' simulations/omnetpp.ini
+# ./auto_project -u Cmdenv -n . -f simulations/omnetpp.ini
 
 echo "====================================="
 echo "Done ✅"

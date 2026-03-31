@@ -1,8 +1,8 @@
 version 3
-run General-0-20260330-06:14:52-25233
+run General-0-20260331-04:38:40-281774
 attr configname General
-attr datetime 20260330-06:14:52
-attr datetimef 20260330-061452
+attr datetime 20260331-04:38:40
+attr datetimef 20260331-043840
 attr experiment General
 attr inifile simulations/omnetpp.ini
 attr iterationvars ""
@@ -10,80 +10,39 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network src.RaftNetwork
-attr processid 25233
+attr processid 281774
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config network src.RaftNetwork
+config *.node[0].crashTime exponential(1.25s)
+config *.node[1].crashTime exponential(1.25s)
+config *.node[2].crashTime exponential(1.25s)
+config *.node[3].crashTime exponential(1.25s)
+config *.node[4].crashTime exponential(1.25s)
+config *.node[5].crashTime exponential(1.25s)
+config *.node[6].crashTime exponential(1.25s)
+config *.node[7].crashTime exponential(1.25s)
+config *.node[8].crashTime exponential(1.25s)
+config *.node[9].crashTime exponential(1.25s)
+config *.node[10].crashTime exponential(1.25s)
+config *.node[11].crashTime exponential(1.25s)
+config *.node[12].crashTime exponential(1.25s)
+config *.node[13].crashTime exponential(1.25s)
+config *.node[14].crashTime exponential(1.25s)
 config cmdenv-express-mode false
 config **.allowunconnected true
 config **.cmdenv-log-level debug
 
-par RaftNetwork.node[0].outGate[0].channel typename "\"src.LossyChannel\""
-par RaftNetwork.node[0].outGate[0].channel disabled false
-attr mutable ""
-par RaftNetwork.node[0].outGate[0].channel delay 0.0132322s
-attr mutable ""
-attr unit s
-par RaftNetwork.node[0].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par RaftNetwork.node[0].outGate[0].channel ber 0
-attr mutable ""
-par RaftNetwork.node[0].outGate[0].channel per 0
-attr mutable ""
-par RaftNetwork.node[0].outGate[0].channel lossRate 0.2
-par RaftNetwork.node[1].outGate[0].channel typename "\"src.LossyChannel\""
-par RaftNetwork.node[1].outGate[0].channel disabled false
-attr mutable ""
-par RaftNetwork.node[1].outGate[0].channel delay 0.0138927s
-attr mutable ""
-attr unit s
-par RaftNetwork.node[1].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par RaftNetwork.node[1].outGate[0].channel ber 0
-attr mutable ""
-par RaftNetwork.node[1].outGate[0].channel per 0
-attr mutable ""
-par RaftNetwork.node[1].outGate[0].channel lossRate 0.2
-par RaftNetwork.node[2].outGate[0].channel typename "\"src.LossyChannel\""
-par RaftNetwork.node[2].outGate[0].channel disabled false
-attr mutable ""
-par RaftNetwork.node[2].outGate[0].channel delay 0.0157278s
-attr mutable ""
-attr unit s
-par RaftNetwork.node[2].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par RaftNetwork.node[2].outGate[0].channel ber 0
-attr mutable ""
-par RaftNetwork.node[2].outGate[0].channel per 0
-attr mutable ""
-par RaftNetwork.node[2].outGate[0].channel lossRate 0.2
-par RaftNetwork.node[3].outGate[0].channel typename "\"src.LossyChannel\""
-par RaftNetwork.node[3].outGate[0].channel disabled false
-attr mutable ""
-par RaftNetwork.node[3].outGate[0].channel delay 0.017664s
-attr mutable ""
-attr unit s
-par RaftNetwork.node[3].outGate[0].channel datarate 1e+06bps
-attr mutable ""
-attr unit bps
-par RaftNetwork.node[3].outGate[0].channel ber 0
-attr mutable ""
-par RaftNetwork.node[3].outGate[0].channel per 0
-attr mutable ""
-par RaftNetwork.node[3].outGate[0].channel lossRate 0.2
 par RaftNetwork.node[4].outGate[0].channel typename "\"src.LossyChannel\""
 par RaftNetwork.node[4].outGate[0].channel disabled false
 attr mutable ""
-par RaftNetwork.node[4].outGate[0].channel delay 0.0140415s
+par RaftNetwork.node[4].outGate[0].channel delay 0.08s
 attr mutable ""
 attr unit s
-par RaftNetwork.node[4].outGate[0].channel datarate 1e+06bps
+par RaftNetwork.node[4].outGate[0].channel datarate 1e+08bps
 attr mutable ""
 attr unit bps
 par RaftNetwork.node[4].outGate[0].channel ber 0
@@ -91,6 +50,2904 @@ attr mutable ""
 par RaftNetwork.node[4].outGate[0].channel per 0
 attr mutable ""
 par RaftNetwork.node[4].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[0].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[0].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[0].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[0].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[0].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[0].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[1].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[1].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[1].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[1].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[1].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[1].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[2].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[2].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[2].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[2].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[2].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[2].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[2].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[3].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[3].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[3].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[3].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[3].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[3].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[3].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[4].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[4].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[4].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[4].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[4].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[4].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[4].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[5].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[5].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[5].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[5].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[5].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[5].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[5].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[6].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[6].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[6].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[6].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[6].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[6].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[6].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[7].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[7].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[7].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[7].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[7].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[7].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[7].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[8].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[8].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[8].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[8].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[8].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[8].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[8].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[9].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[9].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[9].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[9].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[9].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[9].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[9].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[1].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[1].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[1].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[1].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[1].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[1].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[14].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[14].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[14].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[14].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[14].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[14].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[10].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[10].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[10].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[10].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[10].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[10].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[10].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[4].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[4].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[4].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[4].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[4].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[4].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[5].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[5].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[5].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[5].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[5].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[5].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[3].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[3].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[3].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[3].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[3].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[3].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[10].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[10].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[10].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[10].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[10].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[10].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[13].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[13].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[13].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[13].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[13].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[13].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[0].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[0].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[0].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[0].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[0].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[0].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[11].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[11].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[11].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[11].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[11].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[11].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[11].channel lossRate 0.2
+par RaftNetwork.node[2].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[2].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[2].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[2].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[2].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[2].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[11].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[11].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[11].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[11].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[11].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[11].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[12].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[12].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[12].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[12].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[12].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[12].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[6].outGate[12].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[6].outGate[12].channel disabled false
+attr mutable ""
+par RaftNetwork.node[6].outGate[12].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[6].outGate[12].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[6].outGate[12].channel ber 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[12].channel per 0
+attr mutable ""
+par RaftNetwork.node[6].outGate[12].channel lossRate 0.2
+par RaftNetwork.node[9].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[9].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[9].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[9].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[9].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[9].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[7].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[7].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[7].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[7].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[7].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[7].outGate[13].channel lossRate 0.2
+par RaftNetwork.node[8].outGate[13].channel typename "\"src.LossyChannel\""
+par RaftNetwork.node[8].outGate[13].channel disabled false
+attr mutable ""
+par RaftNetwork.node[8].outGate[13].channel delay 0.08s
+attr mutable ""
+attr unit s
+par RaftNetwork.node[8].outGate[13].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par RaftNetwork.node[8].outGate[13].channel ber 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[13].channel per 0
+attr mutable ""
+par RaftNetwork.node[8].outGate[13].channel lossRate 0.2
 par RaftNetwork.node[0] typename "\"src.RaftNode\""
 par RaftNetwork.node[0] nodeId 0
 par RaftNetwork.node[1] typename "\"src.RaftNode\""
@@ -101,6 +2958,26 @@ par RaftNetwork.node[3] typename "\"src.RaftNode\""
 par RaftNetwork.node[3] nodeId 3
 par RaftNetwork.node[4] typename "\"src.RaftNode\""
 par RaftNetwork.node[4] nodeId 4
+par RaftNetwork.node[5] typename "\"src.RaftNode\""
+par RaftNetwork.node[5] nodeId 5
+par RaftNetwork.node[6] typename "\"src.RaftNode\""
+par RaftNetwork.node[6] nodeId 6
+par RaftNetwork.node[7] typename "\"src.RaftNode\""
+par RaftNetwork.node[7] nodeId 7
+par RaftNetwork.node[8] typename "\"src.RaftNode\""
+par RaftNetwork.node[8] nodeId 8
+par RaftNetwork.node[9] typename "\"src.RaftNode\""
+par RaftNetwork.node[9] nodeId 9
+par RaftNetwork.node[10] typename "\"src.RaftNode\""
+par RaftNetwork.node[10] nodeId 10
+par RaftNetwork.node[11] typename "\"src.RaftNode\""
+par RaftNetwork.node[11] nodeId 11
+par RaftNetwork.node[12] typename "\"src.RaftNode\""
+par RaftNetwork.node[12] nodeId 12
+par RaftNetwork.node[13] typename "\"src.RaftNode\""
+par RaftNetwork.node[13] nodeId 13
+par RaftNetwork.node[14] typename "\"src.RaftNode\""
+par RaftNetwork.node[14] nodeId 14
 par RaftNetwork typename "\"src.RaftNetwork\""
-par RaftNetwork numNodes 5
+par RaftNetwork numNodes 15
 

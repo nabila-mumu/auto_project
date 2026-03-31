@@ -1,7 +1,9 @@
+// -----------------------31.03.26 -----------------------
+
+//for checking difference
 #include <omnetpp.h>
 #include <fstream>
-#include <set>
-#include <sstream>
+#include <queue>
 
 using namespace omnetpp;
 
@@ -10,21 +12,30 @@ class BullyNode : public cSimpleModule
   private:
     int nodeId;
     int numNodes;
+
     int currentLeaderId = -1;
     bool isLeader = false;
     bool electionInProgress = false;
+
     int okResponsesReceived = 0;
-    int leaderProbeFailures = 0;
 
     static int totalSentMessages;
     static int totalReceivedMessages;
 
     int sentMessages = 0;
     int receivedMessages = 0;
+
     simtime_t electionStartTime;
     simtime_t electionEndTime;
+    simtime_t electionTime;
 
-    std::set<int> answeredElections;
+    bool coordinatorReceived = false;
+
+    int msgSizeBytes;
+
+    // ✅ NEW: per-gate queues
+    std::vector<std::queue<cPacket*>> sendQueues;
+    std::vector<cMessage*> sendEvents;
 
   protected:
     virtual void initialize() override;
@@ -33,211 +44,280 @@ class BullyNode : public cSimpleModule
 
     void startElection();
     void declareLeader();
-    void probeLeader();
+    void sendToHigherNodes(cPacket *pkt);
+    void sendToNode(int destId, cPacket *pkt);
     void broadcastCoordinator();
 
-    // ✅ SAFE SEND: only through connected outGate[]
-    void sendToAllConnected(cMessage *msg);
+    void enqueuePacket(cPacket *pkt, int gateIndex);
+    void processQueue(int gateIndex);
 };
 
 Define_Module(BullyNode);
 
-/* -------------------------------------------------- */
+/* ---------- STATIC ---------- */
 int BullyNode::totalSentMessages = 0;
 int BullyNode::totalReceivedMessages = 0;
 
-void BullyNode::sendToAllConnected(cMessage *msg)
-{
-    for (int i = 0; i < gateSize("outGate"); i++) {
-        if (gate("outGate", i)->isConnected()) {
-            send(msg->dup(), "outGate", i);
-            sentMessages++;
-            totalSentMessages++; 
-        }
-    }
-    delete msg;
-}
-
-/* -------------------------------------------------- */
-
+/* ---------- INIT ---------- */
 void BullyNode::initialize()
 {
     nodeId = par("nodeId");
     numNodes = getParentModule()->par("numNodes");
 
+    msgSizeBytes = 10000; // 10KB
+
+    int n = gateSize("outGate");
+    sendQueues.resize(n);
+    sendEvents.resize(n);
+
+    for (int i = 0; i < n; i++) {
+        sendEvents[i] = new cMessage(("sendEvent-" + std::to_string(i)).c_str());
+        sendEvents[i]->addPar("gateIndex") = i;
+    }
+
+    if (nodeId == 0) {
+        totalSentMessages = 0;
+        totalReceivedMessages = 0;
+    }
+
     currentLeaderId = numNodes - 1;
 
-    scheduleAt(simTime() + uniform(0.1, 0.2), new cMessage("PROBE_LEADER"));
+    scheduleAt(simTime() + uniform(0.1, 0.2), new cMessage("START"));
 }
 
-/* -------------------------------------------------- */
-
-void BullyNode::probeLeader()
+/* ---------- QUEUE SYSTEM ---------- */
+void BullyNode::enqueuePacket(cPacket *pkt, int gateIndex)
 {
-    if (currentLeaderId == nodeId) {
-        leaderProbeFailures = 0;
-        scheduleAt(simTime() + 0.5, new cMessage("PROBE_LEADER"));
+    cGate *g = gate("outGate", gateIndex);
+    cChannel *ch = g->getTransmissionChannel();
+
+    double lossRate = ch->par("lossRate").doubleValue();
+
+    // ✅ Apply packet loss
+    if (uniform(0,1) < lossRate) {
+        delete pkt;   // drop packet
         return;
     }
 
-    cMessage *probe = new cMessage("HEARTBEAT");
-    probe->addPar("nodeId") = nodeId;
+    pkt->setByteLength(msgSizeBytes);
+    sendQueues[gateIndex].push(pkt);
 
-    sendToAllConnected(probe);
-
-    scheduleAt(simTime() + 0.3, new cMessage("PROBE_TIMEOUT"));
+    if (!sendEvents[gateIndex]->isScheduled()) {
+        processQueue(gateIndex);
+    }
 }
 
-/* -------------------------------------------------- */
+void BullyNode::processQueue(int gateIndex)
+{
+    if (sendQueues[gateIndex].empty()) return;
 
+    cGate *g = gate("outGate", gateIndex);
+    cChannel *ch = g->getTransmissionChannel();
+
+    simtime_t txFinish = ch->getTransmissionFinishTime();
+
+    if (txFinish <= simTime()) {
+        cPacket *pkt = sendQueues[gateIndex].front();
+        sendQueues[gateIndex].pop();
+
+        send(pkt, "outGate", gateIndex);
+
+        sentMessages++;
+        totalSentMessages++;
+
+        // schedule next if queue not empty
+        if (!sendQueues[gateIndex].empty()) {
+            simtime_t nextTime = g->getTransmissionChannel()->getTransmissionFinishTime();
+            scheduleAt(nextTime, sendEvents[gateIndex]);
+        }
+    } else {
+        scheduleAt(txFinish, sendEvents[gateIndex]);
+    }
+}
+
+/* ---------- SEND TO SPECIFIC NODE ---------- */
+void BullyNode::sendToNode(int destId, cPacket *pkt)
+{
+    for (int i = 0; i < gateSize("outGate"); i++) {
+        if (gate("outGate", i)->isConnected()) {
+
+            int id = gate("outGate", i)
+                ->getPathEndGate()
+                ->getOwnerModule()
+                ->par("nodeId");
+
+            if (id == destId) {
+                enqueuePacket(pkt, i);
+                return;
+            }
+        }
+    }
+    delete pkt;
+}
+
+/* ---------- SEND TO HIGHER NODES ---------- */
+void BullyNode::sendToHigherNodes(cPacket *pkt)
+{
+    bool sent = false;
+
+    for (int i = 0; i < gateSize("outGate"); i++) {
+        if (gate("outGate", i)->isConnected()) {
+
+            int id = gate("outGate", i)
+                ->getPathEndGate()
+                ->getOwnerModule()
+                ->par("nodeId");
+
+            if (id > nodeId) {
+                enqueuePacket(pkt->dup(), i);
+                sent = true;
+            }
+        }
+    }
+
+    delete pkt;
+
+    if (!sent) {
+        declareLeader();
+    }
+}
+
+/* ---------- START ELECTION ---------- */
 void BullyNode::startElection()
 {
     if (electionInProgress) return;
 
     electionInProgress = true;
     electionStartTime = simTime();
-    answeredElections.clear();
     okResponsesReceived = 0;
 
-    EV << "\n*** Node " << nodeId << " starts ELECTION ***\n";
+    cPacket *pkt = new cPacket("ELECTION");
+    pkt->addPar("senderId") = nodeId;
 
-    cMessage *msg = new cMessage("ELECTION");
-    msg->addPar("senderId") = nodeId;
+    sendToHigherNodes(pkt);
 
-    sendToAllConnected(msg);
-
-    scheduleAt(simTime() + 0.3, new cMessage("ELECTION_TIMEOUT"));
+    scheduleAt(simTime() + 0.5, new cMessage("TIMEOUT"));
 }
 
-/* -------------------------------------------------- */
-
+/* ---------- DECLARE LEADER ---------- */
 void BullyNode::declareLeader()
 {
-    electionEndTime = simTime();
-    electionInProgress = false;
     isLeader = true;
     currentLeaderId = nodeId;
-    leaderProbeFailures = 0;
-
-    EV << "\n*** Node " << nodeId << " is LEADER ***\n";
-    EV << "Election Time: " << (electionEndTime - electionStartTime) << " seconds\n";
-
-    std::ofstream out("bully_statistics.txt");
-    if (out.is_open()) {
-        out << "Leader: " << nodeId << "\n";
-        out << "Election Time: " << (electionEndTime - electionStartTime) << "\n";
-        out << "Messages Sent: " << sentMessages << "\n";
-        out.close();
-    }
-
-    // Append results to the CSV file
-    std::ofstream csvFile("/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv", std::ios::app);
-    if (csvFile.is_open()) {
-        csvFile << (electionEndTime - electionStartTime) << "," << totalSentMessages << ",";
-        csvFile.close();
-    } else {
-        EV << "Error: Unable to open topology_analysis.csv for writing." << endl;
-    }
+    electionInProgress = false;
 
     broadcastCoordinator();
-
-    // Stop the simulation after the leader is elected
-    EV << "Simulation is stopping as the leader has been elected." << endl;
-    endSimulation();
 }
 
-/* -------------------------------------------------- */
-
+/* ---------- BROADCAST ---------- */
 void BullyNode::broadcastCoordinator()
 {
-    cMessage *msg = new cMessage("COORDINATOR");
-    msg->addPar("leaderId") = nodeId;
+    for (int i = 0; i < gateSize("outGate"); i++) {
+        if (gate("outGate", i)->isConnected()) {
 
-    sendToAllConnected(msg);
+            cPacket *pkt = new cPacket("COORD");
+            pkt->addPar("leaderId") = nodeId;
+
+            enqueuePacket(pkt, i);
+        }
+    }
 }
 
-/* -------------------------------------------------- */
-
+/* ---------- HANDLE MESSAGE ---------- */
 void BullyNode::handleMessage(cMessage *msg)
 {
-    if (msg->isSelfMessage()) {
-        std::string name = msg->getName();
+    // ✅ queue send events
+    if (msg->isSelfMessage() && strstr(msg->getName(), "sendEvent")) {
+        int gateIndex = msg->par("gateIndex");
+        processQueue(gateIndex);
+        return;
+    }
 
-        if (name == "PROBE_LEADER") {
-            probeLeader();
+    if (msg->isSelfMessage()) {
+
+        if (strcmp(msg->getName(), "START") == 0) {
+            startElection();
         }
-        else if (name == "PROBE_TIMEOUT") {
-            leaderProbeFailures++;
-            if (leaderProbeFailures >= 3) {
-                leaderProbeFailures = 0;
-                startElection();
-            } else {
-                scheduleAt(simTime() + 0.5, new cMessage("PROBE_LEADER"));
-            }
-        }
-        else if (name == "ELECTION_TIMEOUT") {
-            if (electionInProgress) {
+        else if (strcmp(msg->getName(), "TIMEOUT") == 0) {
+            if (electionInProgress && okResponsesReceived == 0) {
                 declareLeader();
             }
+        }
+        else if (strcmp(msg->getName(), "STOP_SIM") == 0) {
+            endSimulation();
         }
 
         delete msg;
         return;
     }
 
+    cPacket *pkt = check_and_cast<cPacket *>(msg);
+
     receivedMessages++;
     totalReceivedMessages++;
-    std::string type = msg->getName();
 
+    std::string type = pkt->getName();
+
+    /* ---------- ELECTION ---------- */
     if (type == "ELECTION") {
-        int senderId = msg->par("senderId");
 
-        if (nodeId > senderId &&
-            answeredElections.find(senderId) == answeredElections.end()) {
+        int senderId = pkt->par("senderId");
 
-            cMessage *ok = new cMessage("OK");
-            ok->addPar("responderId") = nodeId;
-            sendToAllConnected(ok);
+        if (nodeId > senderId) {
 
-            answeredElections.insert(senderId);
+            cPacket *ok = new cPacket("OK");
+            sendToNode(senderId, ok);
 
             if (!electionInProgress)
                 startElection();
         }
-        delete msg;
+
+        delete pkt;
     }
+
+    /* ---------- OK ---------- */
     else if (type == "OK") {
-        if (electionInProgress) {
-            electionInProgress = false;
-        }
-        delete msg;
+
+        okResponsesReceived++;
+        electionInProgress = false;
+
+        delete pkt;
     }
-    else if (type == "COORDINATOR") {
-        currentLeaderId = msg->par("leaderId");
+
+    /* ---------- COORD ---------- */
+    else if (type == "COORD") {
+
+        currentLeaderId = pkt->par("leaderId");
         isLeader = (currentLeaderId == nodeId);
         electionInProgress = false;
-        leaderProbeFailures = 0;
 
-        scheduleAt(simTime() + 0.5, new cMessage("PROBE_LEADER"));
-        delete msg;
-    }
-    else if (type == "HEARTBEAT") {
-        delete msg;
+        coordinatorReceived = true;
+
+        electionEndTime = simTime();
+        electionTime = electionEndTime - electionStartTime;
+
+        scheduleAt(simTime() + 0.5, new cMessage("STOP_SIM"));
+
+        delete pkt;
     }
 }
 
-/* -------------------------------------------------- */
-
+/* ---------- FINISH ---------- */
 void BullyNode::finish()
 {
-    EV << "\n=== Node " << nodeId << " Summary ===\n";
-    EV << "Leader: " << (isLeader ? "YES" : "NO") << "\n";
-    EV << "Sent: " << sentMessages << "\n";
-    EV << "Received: " << receivedMessages << "\n";
-}
+    if (nodeId != 0) return;
 
+    std::ofstream file("/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv", std::ios::app);
+
+    if (!file.is_open()) return;
+
+    if (coordinatorReceived)
+        file << electionTime << "," << totalSentMessages << ",";
+
+    file.close();
+}
+// ---------------- bandwidth not fixed -----------------------
 // #include <omnetpp.h>
-// #include <set>
 // #include <fstream>
 
 // using namespace omnetpp;
@@ -248,522 +328,231 @@ void BullyNode::finish()
 //     int nodeId;
 //     int numNodes;
 
-//     int leaderId = -1;
+//     int currentLeaderId = -1;
+//     bool isLeader = false;
 //     bool electionInProgress = false;
-//     bool isAlive = true;
+
+//     int okResponsesReceived = 0;
+
+//     static int totalSentMessages;
+//     static int totalReceivedMessages;
+
+//     int sentMessages = 0;
+//     int receivedMessages = 0;
 
 //     simtime_t electionStartTime;
+//     simtime_t electionEndTime;
+//     simtime_t electionTime;
 
-//     // self messages
-//     cMessage *startElectionMsg = nullptr;
-//     cMessage *electionTimeoutMsg = nullptr;
-//     cMessage *crashMsg = nullptr;
-
-//     // global stats
-//     static long totalMessagesSent;
-//     static long totalMessagesReceived;
-//     static int nodesConfirmedLeader;
+//     bool coordinatorReceived = false;
 
 //   protected:
 //     virtual void initialize() override;
 //     virtual void handleMessage(cMessage *msg) override;
 //     virtual void finish() override;
-//     virtual ~BullyNode();
 
 //     void startElection();
 //     void declareLeader();
+//     void sendToHigherNodes(cMessage *msg);
+//     void sendToNode(int destId, cMessage *msg);
 //     void broadcastCoordinator();
-//     void crashNode();
-
-//     void sendToAll(cMessage *msg);
 // };
 
 // Define_Module(BullyNode);
 
-// /* -------- STATIC VARIABLES -------- */
-// long BullyNode::totalMessagesSent = 0;
-// long BullyNode::totalMessagesReceived = 0;
-// int BullyNode::nodesConfirmedLeader = 0;
+// /* ---------- STATIC ---------- */
+// int BullyNode::totalSentMessages = 0;
+// int BullyNode::totalReceivedMessages = 0;
 
-// /* -------- DESTRUCTOR -------- */
-// BullyNode::~BullyNode()
-// {
-//     cancelAndDelete(startElectionMsg);
-//     cancelAndDelete(electionTimeoutMsg);
-//     cancelAndDelete(crashMsg);
-// }
-
-// /* -------- SAFE BROADCAST -------- */
-// void BullyNode::sendToAll(cMessage *msg)
-// {
-//     for (int i = 0; i < gateSize("outGate"); i++)
-//     {
-//         if (gate("outGate", i)->isConnected())
-//         {
-//             send(msg->dup(), "outGate", i);
-//             totalMessagesSent++;
-//         }
-//     }
-//     delete msg;
-// }
-
-// /* -------- INITIALIZE -------- */
+// /* ---------- INIT ---------- */
 // void BullyNode::initialize()
 // {
 //     nodeId = par("nodeId");
 //     numNodes = getParentModule()->par("numNodes");
 
-//     // if (nodeId == 0)
-//     // {
-//     //     totalMessagesSent = 0;
-//     //     totalMessagesReceived = 0;
-//     //     nodesConfirmedLeader = 0;
-//     // }
-
-//     // optional crash
-//     simtime_t crashTime = par("crashTime");
-//     if (crashTime >= 0)
-//     {
-//         crashMsg = new cMessage("CRASH");
-//         scheduleAt(crashTime, crashMsg);
+//     if (nodeId == 0) {
+//         totalSentMessages = 0;
+//         totalReceivedMessages = 0;
 //     }
 
-//     // start election from node 0
-//     // if (nodeId == 0)
-//     if (uniform(0,1) < 0.3)  
-//     {
-//         totalMessagesSent = 0;
-//         totalMessagesReceived = 0;
-//         nodesConfirmedLeader = 0;
+//     currentLeaderId = numNodes - 1;
 
-//         startElectionMsg = new cMessage("START");
-//         scheduleAt(simTime() + 0.1, startElectionMsg);
+//     scheduleAt(simTime() + uniform(0.1, 0.2), new cMessage("START"));
+// }
+
+// /* ---------- SEND ---------- */
+// void BullyNode::sendToNode(int destId, cMessage *msg)
+// {
+//     for (int i = 0; i < gateSize("outGate"); i++) {
+//         if (gate("outGate", i)->isConnected()) {
+
+//             int id = gate("outGate", i)
+//                 ->getPathEndGate()
+//                 ->getOwnerModule()
+//                 ->par("nodeId");
+
+//             if (id == destId) {
+//                 send(msg, "outGate", i);
+//                 sentMessages++;
+//                 totalSentMessages++;
+//                 return;
+//             }
+//         }
+//     }
+//     delete msg;
+// }
+
+// void BullyNode::sendToHigherNodes(cMessage *msg)
+// {
+//     bool sent = false;
+
+//     for (int i = 0; i < gateSize("outGate"); i++) {
+//         if (gate("outGate", i)->isConnected()) {
+
+//             int id = gate("outGate", i)
+//                 ->getPathEndGate()
+//                 ->getOwnerModule()
+//                 ->par("nodeId");
+
+//             if (id > nodeId) {
+//                 send(msg->dup(), "outGate", i);
+//                 sentMessages++;
+//                 totalSentMessages++;
+//                 sent = true;
+//             }
+//         }
+//     }
+
+//     delete msg;
+
+//     if (!sent) {
+//         declareLeader();
 //     }
 // }
 
-// /* -------- START ELECTION -------- */
+// /* ---------- START ---------- */
 // void BullyNode::startElection()
 // {
-//     if (!isAlive || electionInProgress)
-//         return;
+//     if (electionInProgress) return;
 
-//     EV << "Node " << nodeId << " starts election\n";
-
-//     electionStartTime = simTime();
 //     electionInProgress = true;
+//     electionStartTime = simTime();
+//     okResponsesReceived = 0;
 
 //     cMessage *msg = new cMessage("ELECTION");
 //     msg->addPar("senderId") = nodeId;
 
-//     sendToAll(msg);
+//     sendToHigherNodes(msg);
 
-//     if (!electionTimeoutMsg)
-//         electionTimeoutMsg = new cMessage("ELECTION_TIMEOUT");
-
-//     if (electionTimeoutMsg->isScheduled())
-//         cancelEvent(electionTimeoutMsg);
-
-//     scheduleAt(simTime() + par("electionTimeout"), electionTimeoutMsg);
+//     scheduleAt(simTime() + 0.5, new cMessage("TIMEOUT"));
 // }
 
-// /* -------- DECLARE LEADER -------- */
+// /* ---------- DECLARE ---------- */
 // void BullyNode::declareLeader()
 // {
-//     leaderId = nodeId;
+//     isLeader = true;
+//     currentLeaderId = nodeId;
 //     electionInProgress = false;
-
-//     simtime_t totalTime = simTime() - electionStartTime;
-
-//     EV << "\n===== LEADER ELECTED: Node "
-//        << nodeId << " =====\n";
-
-//     EV << "Election Time: " << totalTime << "\n";
-
-//     // write results
-//     std::ofstream file("/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv", std::ios::app);
-//     if (file.is_open())
-//     {
-//         file << nodeId << ","
-//              << totalTime.dbl() << ","
-//              << (totalMessagesSent + totalMessagesReceived)
-//              << "\n";
-//         file.close();
-//     }
 
 //     broadcastCoordinator();
 // }
 
-// /* -------- BROADCAST LEADER -------- */
+// /* ---------- BROADCAST ---------- */
 // void BullyNode::broadcastCoordinator()
 // {
-//     cMessage *msg = new cMessage("COORDINATOR");
-//     msg->addPar("leaderId") = nodeId;
-
-//     sendToAll(msg);
-// }
-
-// /* -------- CRASH -------- */
-// void BullyNode::crashNode()
-// {
-//     EV << "Node " << nodeId << " crashed!\n";
-//     isAlive = false;
-// }
-
-// /* -------- HANDLE MESSAGE -------- */
-// void BullyNode::handleMessage(cMessage *msg)
-// {
-//     if (msg->isSelfMessage())
-//     {
-//         if (msg == startElectionMsg)
-//         {
-//             startElection();
-//         }
-//         else if (msg == electionTimeoutMsg)
-//         {
-//             if (electionInProgress)
-//                 declareLeader();
-//         }
-//         else if (msg == crashMsg)
-//         {
-//             crashNode();
-//         }
-
-//         return;
-//     }
-
-//     if (!isAlive)
-//     {
-//         delete msg;
-//         return;
-//     }
-
-//     totalMessagesReceived++;
-//     std::string type = msg->getName();
-
-//     if (type == "ELECTION")
-//     {
-//         int senderId = msg->par("senderId");
-
-//         if (nodeId > senderId)
-//         {
-//             cMessage *ok = new cMessage("OK");
-//             ok->addPar("responderId") = nodeId;
-
-//             sendToAll(ok);
-
-//             startElection();
-//         }
-//     }
-//     else if (type == "OK")
-//     {
-//         electionInProgress = false;
-//     }
-//     else if (type == "COORDINATOR")
-//     {
-//         leaderId = msg->par("leaderId");
-//         electionInProgress = false;
-
-//         EV << "Node " << nodeId
-//            << " accepts leader "
-//            << leaderId << "\n";
-
-//         nodesConfirmedLeader++;
-
-//         if (nodesConfirmedLeader == numNodes)
-//         {
-//             EV << "\n===== ALL NODES AGREED =====\n";
-//             EV << "Total Messages: "
-//                << (totalMessagesSent + totalMessagesReceived)
-//                << "\n";
-
-//             // endSimulation();
-//         }
-//     }
-
-//     delete msg;
-// }
-
-// /* -------- FINISH -------- */
-// void BullyNode::finish()
-// {
-//     EV << "Node " << nodeId
-//        << " final leader: " << leaderId << "\n";
-// }
-// -------------------------------------------------------------------------------------------------
-
-// /* Real Bully algorithm rules:
-// When node detects leader failure --> Sends ELECTION to all nodes with higher ID
-// If receives OK from higher node --> Stops election and waits
-// If no OK before timeout --> Declares itself leader
-// Leader sends COORDINATOR to all
-// */
-// #include <omnetpp.h>
-// #include <set>
-// #include <fstream>
-
-// using namespace omnetpp;
-
-// class BullyNode : public cSimpleModule
-// {
-//   private:
-//     int nodeId;
-//     int numNodes;
-
-//     int leaderId = -1;
-//     bool electionInProgress = false;
-//     bool isAlive = true;
-//     simtime_t electionStartTime; 
-
-//     // self messages
-//     cMessage *startElectionMsg = nullptr;
-//     cMessage *electionTimeoutMsg = nullptr;
-//     cMessage *crashMsg = nullptr;
-//     cMessage *stopMsg = nullptr;
-
-//   protected:
-//     virtual void initialize() override;
-//     virtual void handleMessage(cMessage *msg) override;
-//     virtual void finish() override;
-//     virtual ~BullyNode();
-
-//     void startElection();
-//     void declareLeader();
-//     void broadcastCoordinator();
-//     void crashNode();
-// };
-
-// static long totalMessagesSent = 0;
-// static long totalMessagesReceived = 0;
-
-// Define_Module(BullyNode);
-
-// /*-------------------------------------------*/
-
-// BullyNode::~BullyNode()
-// {
-//     cancelAndDelete(startElectionMsg);
-//     cancelAndDelete(electionTimeoutMsg);
-//     cancelAndDelete(crashMsg);
-//     cancelAndDelete(stopMsg);
-// }
-
-// /*-------------------------------------------*/
-
-// void BullyNode::initialize()
-// {
-//     nodeId = par("nodeId");
-//     numNodes = getParentModule()->par("numNodes");
-
-//     // Optional crash time parameter
-//     simtime_t crashTime = par("crashTime");
-
-//     if (crashTime >= 0)
-//     {
-//         crashMsg = new cMessage("CRASH");
-//         scheduleAt(crashTime, crashMsg);
-//     }
-
-//     // Only node 0 initiates election at start
-//     if (nodeId == 0)
-//     {
-//         startElectionMsg = new cMessage("START");
-//         scheduleAt(simTime() + 0.1, startElectionMsg);
-//     }
-// }
-
-// /*-------------------------------------------*/
-
-// void BullyNode::startElection()
-// {
-//     if (!isAlive) return;
-
-//     if (electionInProgress)
-//         return;  // already running election
-
-//     electionStartTime = simTime();
-
-//     EV << "Node " << nodeId << " starts election\n";
-
-//     electionInProgress = true;
-
-//     for (int i = 0; i < gateSize("outGate"); i++)
-//     {
-//         if (gate("outGate", i)->isConnected())
-//         {
-//             cMessage *msg = new cMessage("ELECTION");
-//             msg->addPar("senderId") = nodeId;
-//             send(msg, "outGate", i);
-//             totalMessagesSent++;
-//         }
-//     }
-
-//     if (!electionTimeoutMsg)
-//         electionTimeoutMsg = new cMessage("ELECTION_TIMEOUT");
-
-//     // 🔥 critical fix
-//     if (electionTimeoutMsg->isScheduled())
-//         cancelEvent(electionTimeoutMsg);
-
-//     scheduleAt(simTime() + par("electionTimeout"), electionTimeoutMsg);
-// }
-
-// /*-------------------------------------------*/
-
-// void BullyNode::declareLeader()
-// {
-//     leaderId = nodeId;
-//     electionInProgress = false;
-
-//     simtime_t electionEndTime = simTime();
-//     simtime_t totalElectionTime = electionEndTime - electionStartTime;
-
-//     long totalMessages = totalMessagesSent + totalMessagesReceived;
-
-//     EV << "\n===== LEADER ELECTED: Node "
-//        << nodeId << " =====\n\n";
-
-//     EV << "Election Time: " << totalElectionTime << "\n";
-//     EV << "Total Messages: " << totalMessages << "\n\n";
-
-//     // ✅ WRITE TO CSV
-//     std::ofstream file(
-//         "/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv",
-//         std::ios::app
-//     );
-
-//     if (file.is_open())
-//     {
-//         file << nodeId << ","
-//              << totalElectionTime.dbl() << ","
-//              << totalMessages << "\n";
-
-//         file.close();
-//     }
-//     else
-//     {
-//         EV << "ERROR: Could not open analysis.csv\n";
-//     }
-
-//     broadcastCoordinator();  
-
-//     // 🔥 schedule simulation stop after delay
-//     // if (!stopMsg)
-//     //     stopMsg = new cMessage("STOP_SIM");
-
-//     // scheduleAt(simTime() + par("stopDelay"), stopMsg);
-    
-//     endSimulation();
-// }
-
-// /*-------------------------------------------*/
-
-// void BullyNode::broadcastCoordinator()
-// {
-//     for (int i = 0; i < gateSize("outGate"); i++)
-//     {
-//         if (gate("outGate", i)->isConnected())
-//         {
-//             cMessage *msg = new cMessage("COORDINATOR");
+//     for (int i = 0; i < gateSize("outGate"); i++) {
+//         if (gate("outGate", i)->isConnected()) {
+//             cMessage *msg = new cMessage("COORD");
 //             msg->addPar("leaderId") = nodeId;
+
 //             send(msg, "outGate", i);
-//             totalMessagesSent++;
+//             sentMessages++;
+//             totalSentMessages++;
 //         }
 //     }
 // }
 
-// /*-------------------------------------------*/
-
-// void BullyNode::crashNode()
-// {
-//     EV << "Node " << nodeId << " crashed!\n";
-//     isAlive = false;
-// }
-
-// /*-------------------------------------------*/
-
+// /* ---------- HANDLE ---------- */
 // void BullyNode::handleMessage(cMessage *msg)
 // {
-//     if (msg->isSelfMessage())
-//     {
-//         if (msg == startElectionMsg)
-//         {
+//     if (msg->isSelfMessage()) {
+
+//         if (strcmp(msg->getName(), "START") == 0) {
 //             startElection();
 //         }
-//         else if (msg == electionTimeoutMsg)
-//         {
-//             if (electionInProgress)
+//         else if (strcmp(msg->getName(), "TIMEOUT") == 0) {
+//             if (electionInProgress && okResponsesReceived == 0) {
 //                 declareLeader();
+//             }
 //         }
-//         else if (msg == crashMsg)
-//         {
-//             crashNode();
-//         }
-//         // 🔥 critical fix
-//         else if (msg == stopMsg)
-//         {
-//             EV << "Stopping simulation after coordinator propagation\n";
+//         else if (strcmp(msg->getName(), "STOP_SIM") == 0) {
 //             endSimulation();
-//             delete msg;
-//             return;
 //         }
-//         return;
-//     }
 
-//     if (!isAlive)
-//     {
 //         delete msg;
 //         return;
 //     }
 
-//     totalMessagesReceived++;
+//     receivedMessages++;
+//     totalReceivedMessages++;
+
 //     std::string type = msg->getName();
 
-//     if (type == "ELECTION")
-//     {
+//     /* ---------- ELECTION ---------- */
+//     if (type == "ELECTION") {
+
 //         int senderId = msg->par("senderId");
 
-//         if (nodeId > senderId)
-//         {
+//         if (nodeId > senderId) {
+
 //             cMessage *ok = new cMessage("OK");
-//             // send(ok, msg->getArrivalGate()->getIndex());
-//             int gateIndex = msg->getArrivalGate()->getIndex();
-//             send(ok, "outGate", gateIndex);
-//             totalMessagesSent++;
+//             sendToNode(senderId, ok);
 
-//             startElection();
+//             if (!electionInProgress)
+//                 startElection();
 //         }
+
+//         delete msg;
 //     }
-//     else if (type == "OK")
-//     {
+
+//     /* ---------- OK ---------- */
+//     else if (type == "OK") {
+
+//         okResponsesReceived++;
 //         electionInProgress = false;
+
+//         delete msg;
 //     }
-//     else if (type == "COORDINATOR")
-//     {
-//         leaderId = msg->par("leaderId");
+
+//     /* ---------- COORD ---------- */
+//     else if (type == "COORD") {
+
+//         currentLeaderId = msg->par("leaderId");
+//         isLeader = (currentLeaderId == nodeId);
 //         electionInProgress = false;
 
-//         // int newLeader = msg->par("leaderId");
+//         coordinatorReceived = true;
 
-//         // if (leaderId != newLeader)
-//         // {
-//         //     leaderId = newLeader;
-//         //     electionInProgress = false;
+//         electionEndTime = simTime();
+//         electionTime = electionEndTime - electionStartTime;
 
-//         //     broadcastCoordinator();  // propagate further
-//         // }
+//         scheduleAt(simTime() + 0.5, new cMessage("STOP_SIM"));
 
-//         EV << "Node " << nodeId
-//            << " recognizes leader "
-//            << leaderId << "\n";
+//         delete msg;
 //     }
-
-//     delete msg;
 // }
 
-// /*-------------------------------------------*/
-
+// /* ---------- FINISH ---------- */
 // void BullyNode::finish()
 // {
-//     EV << "Node " << nodeId
-//        << " final leader: " << leaderId << "\n";
+//     if (nodeId != 0) return;
+
+//     std::ofstream file("/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv", std::ios::app);
+
+//     if (!file.is_open()) return;
+
+//     if (coordinatorReceived)
+//         file << electionTime << "," << totalSentMessages << ",";
+
+//     file.close();
 // }
