@@ -9,6 +9,7 @@ def load_config(path="config.json"):
     with open(path, "r") as f:
         return json.load(f)
 
+
 # ===============================
 # Generate CONNECTED random graph
 # ===============================
@@ -45,7 +46,7 @@ def write_graph_txt(edges, bandwidth, latency, filename="graph.txt"):
 # Generate RingNode.ned (from graph, UNIDIRECTIONAL)
 # ===============================
 # def generate_ring_ned(n):
-def generate_ring_ned(n, edges):
+def generate_ring_ned(n, edges, failure_rate):
     lines = []
     lines.append("package src;\n\n")
 
@@ -53,9 +54,17 @@ def generate_ring_ned(n, edges):
     lines.append("simple RingNode\n{\n")
     lines.append("    parameters:\n")
     lines.append("        int nodeId;\n")
+    crash_mean_time = 1 / failure_rate
+    lines.append(f"        double crashTime @unit(s) = default(exponential({crash_mean_time}s));\n")
+    recovery_mean_time = crash_mean_time / 5
+    lines.append(f"        double recoveryTime @unit(s) = default(exponential({recovery_mean_time}s));\n")
+    lines.append("        double stopDelay @unit(s) = default(1s);\n")
+    lines.append("        double electionTimeout @unit(s) = default(2s);\n")
+    lines.append("        bool bidirectional = default(false);\n")
     lines.append('        @display("i=block/routing");\n')
     lines.append("    gates:\n")
     lines.append("        input inGate[];\n")
+    lines.append("        input directIn;\n")
     lines.append("        output outGate[];\n")
     lines.append("}\n\n")
 
@@ -108,14 +117,17 @@ def generate_channels_ned(bandwidth, latency):
 # ===============================
 # Generate BullyNode.ned
 # ===============================
-def generate_bully_ned(n, edges):
+def generate_bully_ned(n, edges, failure_rate):
     lines = []
     lines.append("package src;\n\n")
 
     lines.append("simple BullyNode\n{\n")
     lines.append("    parameters:\n")
     lines.append("        int nodeId;\n")
-    lines.append("        double crashTime @unit(s) = default(-1s);\n")
+    crash_mean_time = 1 / failure_rate
+    lines.append(f"        double crashTime @unit(s) = default({crash_mean_time}s);\n")
+    recovery_mean_time = crash_mean_time / 5
+    lines.append(f"        double recoveryTime @unit(s) = default({recovery_mean_time}s);\n")
     lines.append("        double electionTimeout @unit(s) = default(0.5s);\n")
     lines.append("        double stopDelay @unit(s) = default(1s);\n")
     lines.append('        @display("i=block/routing");\n')
@@ -148,7 +160,7 @@ def generate_bully_ned(n, edges):
 # ===============================
 # Generate RaftNode.ned
 # ===============================
-def generate_raft_ned(n, edges):
+def generate_raft_ned(n, edges, failure_rate):
     lines = []
     lines.append("package src;\n\n")
 
@@ -156,6 +168,13 @@ def generate_raft_ned(n, edges):
     lines.append("simple RaftNode\n{\n")
     lines.append("    parameters:\n")
     lines.append("        int nodeId;\n")
+    crash_mean_time = 1 / failure_rate
+    lines.append(f"        double crashTime @unit(s) = default(exponential({crash_mean_time}s));\n")
+    recovery_mean_time = crash_mean_time / 5
+    lines.append(f"        double recoveryTime @unit(s) = default(exponential({recovery_mean_time}s));\n")
+    lines.append("        double electionTimeoutMin @unit(s) = default(0.15s);\n")
+    lines.append("        double electionTimeoutMax @unit(s) = default(0.5s);\n")
+    lines.append("        double heartbeatInterval @unit(s) = default(0.05s);\n")
     lines.append('        @display("i=block/routing");\n')
     lines.append("    gates:\n")
     lines.append("        input inGate[];\n")
@@ -191,12 +210,21 @@ def generate_ini(n, failure_rate):
     lines = []
     lines.append("[General]\n")
     lines.append("network = src.BullyNetwork\n")
-    lines.append("# sim-time-limit = 1000s\n\n")
+    lines.append("sim-time-limit = 1000s\n\n")
+    mean_time = 1 / failure_rate
+    lines.append(f"*.node[*].crashTime = exponential({mean_time}s)\n")
+    recovery_mean_time = mean_time / 5
+    lines.append(f"*.node[*].recoveryTime = exponential({recovery_mean_time}s)\n")
+    lines.append("*.node[*].electionTimeout = uniform(0.15s, 0.5s)\n")
+    lines.append("*.node[*].stopDelay = 1s\n\n")
+    lines.append("# false = unidirectional ring\n")
+    lines.append("# true = bidirectional bully/raft\n")
+    lines.append("*.node[*].bidirectional = false\n")
 
-    lines.append("# Node failure configuration\n")
-    for i in range(n):
-        mean_time = 1 / failure_rate
-        lines.append(f"*.node[{i}].crashTime = exponential({mean_time}s)\n")
+    # lines.append("# Node failure configuration\n")
+    # for i in range(n):
+    #     mean_time = 1 / failure_rate
+    #     lines.append(f"*.node[{i}].crashTime = exponential({mean_time}s)\n")
 
     lines.append("# Optional (for terminal mode)\n")
     lines.append("cmdenv-express-mode = false\n")
@@ -219,11 +247,12 @@ def main():
     failure_rate = config["failure_rate"]
 
     edges = generate_connected_graph(n, m)
+    print(f"Generated graph with {n} nodes and {len(edges)} edges (requested {m})")
 
     write_graph_txt(edges, bandwidth, latency)
-    generate_ring_ned(n, edges)
-    generate_bully_ned(n, edges)
-    generate_raft_ned(n, edges)
+    generate_ring_ned(n, edges, failure_rate)
+    generate_bully_ned(n, edges, failure_rate)
+    generate_raft_ned(n, edges, failure_rate)
     generate_channels_ned(bandwidth, latency) 
     generate_ini(n, failure_rate)
 

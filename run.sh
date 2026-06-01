@@ -98,7 +98,7 @@ EXEC="./auto_project"
 CSV_FILE="/home/nabila/omnetpp-6.3.0/samples/auto_project/simulations/results/analysis.csv"
 
 MAX_RETRY=3
-TIME_LIMIT=5s
+TIME_LIMIT=1000s
 
 run_with_retry() {
     local network_name=$1
@@ -163,15 +163,15 @@ run_with_retry() {
     fi
 }
 
-# STEP 6: BullyNetwork
-run_with_retry "BullyNetwork" ",,"
-
-# STEP 7: RingNetwork
+# STEP 6: RingNetwork
 run_with_retry "RingNetwork" ",,"
 
-# STEP 8: Bidirectional RingNetwork
+# STEP 7: Bidirectional RingNetwork
 ./make_bidir.sh
 run_with_retry "RingNetwork" ",,"
+
+# STEP 8: BullyNetwork
+run_with_retry "BullyNetwork" ",,"
 
 # STEP 9: RaftNetwork
 run_with_retry "RaftNetwork" ","
